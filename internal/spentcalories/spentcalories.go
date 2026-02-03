@@ -28,11 +28,11 @@ const (
 func parseTraining(data string) (int, string, time.Duration, error) {
 	parts := strings.Split(data, ",")
 	if len(parts) != 3 {
-		return 0, "", 0, fmt.Errorf("incorrect data \"%s\" in parseTraining()", data)
+		return 0, "", 0, fmt.Errorf("incorrect data: %s in parseTraining()", data)
 	}
 	num, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return 0, "", 0, fmt.Errorf("steps parsing error: %s in parseTraining()", err)
+		return 0, "", 0, fmt.Errorf("steps parsing error: %w in parseTraining()", err)
 	}
 	if num <= 0 {
 		return 0, "", 0, fmt.Errorf("steps number equal or below zero. data: %s in parseTraining", data)
@@ -40,7 +40,7 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	activity := parts[1]
 	dur, err := time.ParseDuration(parts[2])
 	if err != nil {
-		return 0, "", 0, fmt.Errorf("duration parsing error: %s in parseTraining()", err)
+		return 0, "", 0, fmt.Errorf("duration parsing error: %w in parseTraining()", err)
 	}
 	if dur <= 0 {
 		return 0, "", 0, fmt.Errorf("duration equal or below zero. data: %s in parseTraining()", data)

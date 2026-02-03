@@ -28,14 +28,14 @@ func parsePackage(data string) (int, time.Duration, error) {
 	}
 	num, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return 0, 0, fmt.Errorf("steps parsing error: %s in parsePackage()", err)
+		return 0, 0, fmt.Errorf("steps parsing error: %w in parsePackage()", err)
 	}
 	if num <= 0 {
 		return 0, 0, fmt.Errorf("steps number equal or below zero. data: %s in parsePackage()", data)
 	}
 	dur, err := time.ParseDuration(parts[1])
 	if err != nil {
-		return 0, 0, fmt.Errorf("duraion parsing error: %s in parsePackage()", err)
+		return 0, 0, fmt.Errorf("duraion parsing error: %w in parsePackage()", err)
 	}
 	if dur <= 0 {
 		return 0, 0, fmt.Errorf("duration equal or below zero. data: %s in parsePackage()", data)
